@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <script>
+      (function() {
+        try {
+          var _origFetch = window.fetch;
+          var _activeFetch = _origFetch ? function() {
+            return _origFetch.apply(window, arguments);
+          } : null;
+
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              return _activeFetch || _origFetch;
+            },
+            set: function(val) {
+              _activeFetch = val;
+            },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (err) {
+          // Fallback if defining on window fails
+          try {
+            if (typeof Window !== 'undefined' && Window.prototype) {
+              var _protoFetch = Window.prototype.fetch;
+              Object.defineProperty(Window.prototype, 'fetch', {
+                get: function() {
+                  return _activeFetch || _protoFetch;
+                },
+                set: function(val) {
+                  _activeFetch = val;
+                },
+                configurable: true,
+                enumerable: true
+              });
+            }
+          } catch (e) {}
+        }
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Docubox | Equipos, tóner y refacciones de impresión</title>
+    <link rel="icon" type="image/svg+xml" href="/docubox-logo.svg" />
+    <meta name="description" content="Docubox comercializa equipos de impresión digital, tóner, consumibles y refacciones Xerox para imprentas, centros de copiado y oficinas." />
+    <meta property="og:title" content="Docubox | Equipos, tóner y refacciones de impresión" />
+    <meta property="og:description" content="Docubox comercializa equipos de impresión digital, tóner, consumibles y refacciones Xerox para imprentas, centros de copiado y oficinas." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
