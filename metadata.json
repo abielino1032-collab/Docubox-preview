@@ -1,6 +1,0 @@
-{
-  "name": "Web Project Studio",
-  "description": "Aplicación web lista para generar tu proyecto a partir del archivo subido.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
